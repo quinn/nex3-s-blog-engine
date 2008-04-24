@@ -1,12 +1,12 @@
 ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.0.1' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.0.2' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
-Rails::Initializer.run { |config| config.action_controller.session_store = :active_record_store }
+Rails::Initializer.run { |config| config.action_controller.session_store = :cookie_store }
 
 # Adding this so it doesn't break on my remote host.
 # I have no idea why it's necessary.

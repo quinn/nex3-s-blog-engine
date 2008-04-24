@@ -9,19 +9,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 6) do
+ActiveRecord::Schema.define(:version => 4) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
-    t.text     "content",    :default => "",                    :null => false
-    t.datetime "created_at"
     t.integer  "post_id"
-    t.datetime "updated_at", :default => '2007-09-03 22:42:42'
+    t.text     "content",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "posts", :force => true do |t|
-    t.string   "title",      :default => "", :null => false
-    t.text     "content",    :default => "", :null => false
+    t.string   "title",      :null => false
+    t.text     "content",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -31,24 +31,15 @@ ActiveRecord::Schema.define(:version => 6) do
     t.integer "tag_id"
   end
 
-  add_index "posts_tags", ["post_id"], :name => "index_posts_tags_on_post_id"
   add_index "posts_tags", ["tag_id"], :name => "index_posts_tags_on_tag_id"
-
-  create_table "sessions", :force => true do |t|
-    t.string   "session_id"
-    t.text     "data"
-    t.datetime "updated_at"
-  end
-
-  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
-  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+  add_index "posts_tags", ["post_id"], :name => "index_posts_tags_on_post_id"
 
   create_table "tags", :force => true do |t|
-    t.string "name", :default => "", :null => false
+    t.string "name", :null => false
   end
 
   create_table "users", :force => true do |t|
-    t.string  "name",      :default => "",    :null => false
+    t.string  "name",                         :null => false
     t.boolean "admin",     :default => false
     t.string  "email"
     t.string  "link"

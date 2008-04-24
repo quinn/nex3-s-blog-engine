@@ -1,7 +1,8 @@
 require 'application_helper.rb'
 
 class ApplicationController < ActionController::Base
-  session :session_key => "_#{Nex3::Config['blog']['name'].downcase}_session_id"
+  session :session_key => "_#{Nex3::Config['blog']['name'].downcase}_session_id",
+          :secret => "You should really replace this with a secret that is actulally secret. If this is a security hole for you you suck. Sorry."
 
   helper_method :post_path, :post_url, :current_user, :admin?, :proper?
 
