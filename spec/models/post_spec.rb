@@ -129,6 +129,23 @@ describe Post, ".find_with_query" do
     Post.find(:all, :query => "").should be_empty
   end
 end
+
+describe Post, ".authored_by" do
+  fixtures :posts, :users
+
+  it "should return two posts for the admin" do
+    Post.authored_by(users(:admin).name).length.should == 2
+  end
+
+  it "should return zero posts for jenny" do
+    Post.authored_by(users(:jenny).name).should be_empty
+  end
+
+  it "should return zero posts for non-existing users" do
+    Post.authored_by("nobody").should be_empty
+  end
+end
+
 describe Post, "with a normal configuration" do
   fixtures :posts
 

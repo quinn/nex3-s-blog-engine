@@ -113,6 +113,11 @@ class Post < ActiveRecord::Base
         end
     end
 
+    def authored_by(user)
+      user= User.find_by_name(user)
+      user.nil? ? [] : user.posts
+    end
+
     protected
 
     def handle_find_option(name, &block)
@@ -149,7 +154,7 @@ class Post < ActiveRecord::Base
 
   handle_find_option(:query) do |options, query|
     if query.empty?
-      add_to_conditions(options, 'false')
+      add_to_conditions(options, '1=0')
     else
       term = "%#{query}%"
       add_to_conditions(options, "posts.content LIKE ? OR posts.title LIKE ?", term, term)

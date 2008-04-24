@@ -1,20 +1,12 @@
 # Replace this with your own database configuration.
 
 development:
-  adapter: mysql
+  adapter: sqlite3
   database: blog_development
-  username: root
-  password:
-  host: localhost
-  socket: /var/run/mysqld/mysqld.sock
 
 test:
-  adapter: mysql
+  adapter: sqlite3
   database: blog_test
-  username: root
-  password:
-  host: localhost
-  socket: /var/run/mysqld/mysqld.sock
 
 production:
   adapter: mysql
