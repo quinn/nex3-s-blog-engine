@@ -1,9 +1,10 @@
 require 'redcloth'
 
 class Post < ActiveRecord::Base
-  validates_presence_of :title, :content
+  validates_presence_of :title, :content, :user_id
   has_many :comments, :dependent => :destroy, :order => 'created_at'
   has_and_belongs_to_many :tags, :order => 'name', :after_remove => :destroy_dangling_tag
+  belongs_to :user
 
   def render
     render_string content

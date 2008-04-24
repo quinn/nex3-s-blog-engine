@@ -213,7 +213,7 @@ describe PostsController, "#update" do
   end
 
   it "should redirect to #show for an admin" do
-    set_admin
+    
     controller.stubs(:post_path).returns('/posts/1-best-post-ever')
     put :update, :format => 'html', :id => 1
     response.should redirect_to('/posts/1-best-post-ever')
@@ -244,6 +244,13 @@ describe PostsController, "#create" do
   it "should redirect to signin for a non-admin" do
     post :create
     response.should redirect_to('/signin')
+  end
+
+  it "should set post's user" do
+    fixtures :users
+    controller.stubs(:current_user).returns(users(:admin))
+    post :create, :format => :html
+    controller.send(:current_user).posts.should include?(controller.send(:current_object))
   end
 
   it "should redirect to #show for an admin" do

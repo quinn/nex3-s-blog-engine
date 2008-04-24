@@ -156,6 +156,18 @@ describe Post, "with a normal configuration" do
   it "should produce a unique uid" do
     posts(:first).uid.should == "http://#{Nex3::Config['blog']['site']},2007-04-02:1/"
   end
+
+  it "should belong to a user" do
+    posts(:first).user.should_not be_nil
+  end
+end
+
+describe Post, "without a user_id" do
+  fixtures :posts
+
+  it "should have one error on user_id" do
+    posts(:userless).should have(1).error_on(:user_id)
+  end
 end
 
 describe Post, "with an empty title" do

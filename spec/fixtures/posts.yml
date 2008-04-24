@@ -410,3 +410,9 @@ syntaxey:
     Skop.
   created_at: 2007-04-02 00:00:01
   updated_at: 2007-04-02 00:00:01
+userless:
+  id: 14
+  title: This post has no user!
+  content: Slight on the content to!
+  created_at: 2007-04-02 00:00:01
+  updated_at: 2007-04-02 00:00:01
