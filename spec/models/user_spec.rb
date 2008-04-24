@@ -120,6 +120,23 @@ describe User, "with a name longer than thirty characters" do
   end
 end
 
+describe User, "with two posts" do
+  fixtures :posts, :users
+
+  it "should have 2 posts" do
+    users(:admin).should have(2).posts
+  end
+
+  it "should have post_count of 2" do
+    users(:admin).post_count.should == 2
+  end
+
+  it "should only calculate post_count once" do
+    User.expects(:count_by_sql).returns(2).once
+    5.times { users(:admin).post_count }
+  end
+end
+
 describe User, "with two comments" do
   fixtures :users, :comments
 

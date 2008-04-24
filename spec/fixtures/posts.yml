@@ -7,12 +7,14 @@ first:
     It was a Good Day.
   created_at: 2007-04-02 00:00:01
   updated_at: 2007-04-02 00:00:01
+  user_id: 4
 titleless:
   id: 2
   title: ""
   content: Foo Bar
   created_at: 2007-04-02 00:00:01
   updated_at: 2007-04-02 00:00:01
+  user_id: 4
 contentless:
   id: 3
   title: Foo Bar

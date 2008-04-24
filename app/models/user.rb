@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   validates_length_of :name, :maximum => 30
 
   has_many :comments
+  has_many :posts
 
   attr_accessor :password, :password_confirm
 
@@ -45,6 +46,10 @@ END
                        else
                          self.class.count_by_sql ['SELECT COUNT(*) FROM comments c WHERE c.user_id = ?', id]
                        end
+  end
+
+  def post_count
+    @post_count ||= self.class.count_by_sql ['SELECT COUNT(*) FROM posts p WHERE p.user_id = ?', id]
   end
 
   def href
